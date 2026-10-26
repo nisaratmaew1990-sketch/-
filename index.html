@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>ผจญภัยพิชิตดินแดนคำควบกล้ำ - เกมการศึกษาภาษาไทย ป.2</title>
+  <meta name="description" content="เกมการศึกษาออนไลน์ ผจญภัยพิชิตดินแดนคำควบกล้ำ สำหรับนักเรียนชั้นประถมศึกษาปีที่ 2 เรียนรู้คำควบกล้ำแท้ 5 ด่าน พร้อมเกียรติบัตรและบันทึกคะแนน">
+  <meta name="keywords" content="คำควบกล้ำ, ภาษาไทย, เกมการศึกษา, ป.2, สื่อการสอน, ข้อสอบภาษาไทย, ประถมศึกษาปีที่ 2">
+  <meta name="theme-color" content="#1e1b4b">
+
+  <!-- Favicon Emoji -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🐉</text></svg>">
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="css/animations.css">
+</head>
+<body>
+
+  <!-- ==================== HEADER ==================== -->
+  <header class="game-header">
+    <div class="header-container">
+      <div class="logo-area">
+        <span class="logo-icon" aria-hidden="true">🐉</span>
+        <div>
+          <h1 class="logo-title">ผจญภัยพิชิตดินแดนคำควบกล้ำ</h1>
+          <div class="logo-sub">เกมการศึกษาภาษาไทย ชั้นประถมศึกษาปีที่ 2</div>
+        </div>
+      </div>
+      <div class="header-actions">
+        <button id="btnToggleSound" class="btn-header" title="เปิด/ปิดเสียงดนตรีและเอฟเฟกต์">
+          🔊 <span class="sound-text">เสียง: เปิด</span>
+        </button>
+        <button id="btnOpenTeacherModal" class="btn-header" title="สำหรับคุณครูเข้าสู่ระบบดูผลคะแนน">
+          👨‍🏫 <span class="teacher-text">ระบบคุณครู</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== MAIN CONTENT ==================== -->
+  <main class="game-main">
+
+    <!-- SCREEN 1: START SCREEN (เลือกตัวละคร & กรอกข้อมูล) -->
+    <section id="screen-start" class="game-screen active">
+      <div class="hero-card">
+        <div class="hero-banner">
+          <h2 class="hero-title">🌟 ยินดีต้อนรับสู่อาณาจักรคำควบกล้ำ 🌟</h2>
+          <p class="hero-description">
+            ร่วมเดินทางผจญภัย 5 ด่านมหัศจรรย์ ตอบคำถามคำควบกล้ำเพื่อปราบมังกรและชิงเกียรติบัตรเหรียญทอง!
+          </p>
+        </div>
+
+        <!-- Form ข้อมูลนักเรียน -->
+        <div class="hero-form-box">
+          <div class="form-title">
+            <span>📝</span> ข้อมูลผู้กล้าตัวน้อย (นักเรียน)
+          </div>
+          <div class="form-grid">
+            <div class="form-group">
+              <label for="inputStudentName">ชื่อ - นามสกุล นักเรียน :</label>
+              <input type="text" id="inputStudentName" class="form-input" placeholder="เช่น ด.ช. กล้าหาญ รักเรียน" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label for="inputStudentClass">ชั้นเรียน :</label>
+              <input type="text" id="inputStudentClass" class="form-input" value="2/1" placeholder="เช่น 2/1" required>
+            </div>
+            <div class="form-group">
+              <label for="inputStudentNo">เลขที่ :</label>
+              <input type="number" id="inputStudentNo" class="form-input" min="1" max="99" placeholder="เช่น 5" required>
+            </div>
+          </div>
+        </div>
+
+        <!-- ตัวเลือกตัวละครน่ารัก -->
+        <div class="char-selection-section">
+          <div class="char-selection-title">
+            <span>🧙‍♂️</span> เลือกตัวละครประจำตัวของคุณ :
+          </div>
+          <div id="avatarSelector" class="avatar-selector">
+            <!-- Rendered by JS -->
+          </div>
+          <div id="selectedAvatarQuote" class="avatar-quote-preview">
+            "ดาบแห่งปัญญาจะฟันฝ่าทุกอุปสรรค!"
+          </div>
+        </div>
+
+        <!-- ปุ่มเริ่มเกม 3D -->
+        <div>
+          <button id="btnStartAdventure" class="btn-primary-3d shimmer-gold">
+            <span>⚔️</span> เริ่มการผจญภัยเลย! <span>🚀</span>
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- SCREEN 2: STAGE INTRO (แนะนำด่าน) -->
+    <section id="screen-stage-intro" class="game-screen">
+      <div id="stageIntroCard" class="stage-intro-card">
+        <div id="stageIntroBadge" class="stage-intro-badge">ด่านที่ 1</div>
+        <div id="stageIntroIcon" class="stage-intro-icon">🌲</div>
+        <h2 id="stageIntroTitle" class="stage-intro-title">ป่าคำควบกล้ำ</h2>
+        <p id="stageIntroDesc" class="stage-intro-desc">
+          ภารกิจค้นหาพยัญชนะควบกล้ำแท้ เพื่อปลดล็อกประตูสู่ด่านถัดไป!
+        </p>
+
+        <div class="stage-char-speech">
+          <div id="stageIntroCharIcon" class="speech-avatar">🛡️</div>
+          <div>
+            <div id="stageIntroCharName" class="speech-name">น้องกล้าหาญ</div>
+            <div id="stageIntroCharQuote" class="speech-text">พร้อมลุยแล้วครับทุกคน!</div>
+          </div>
+        </div>
+
+        <button id="btnStartStage" class="btn-primary-3d">
+          <span>🎯</span> เข้าสู่ด่านทดสอบ!
+        </button>
+      </div>
+    </section>
+
+    <!-- SCREEN 3: QUIZ & ADVENTURE SCENE (หน้าเล่นเกม) -->
+    <section id="screen-quiz" class="game-screen">
+      <!-- Quiz Header & Progress -->
+      <div class="quiz-header">
+        <div class="quiz-top-info">
+          <div class="quiz-stage-tag">
+            <span id="quizStageIcon">🌲</span>
+            <span id="quizStageName">ด่านที่ 1: ป่าคำควบกล้ำ</span>
+          </div>
+          <div id="quizScoreText" class="quiz-score-badge">0 คะแนน</div>
+        </div>
+        <div class="progress-container">
+          <div class="progress-track">
+            <div id="quizProgressBar" class="progress-bar"></div>
+          </div>
+          <div id="quizQuestionProgressText" class="progress-text">ข้อที่ 1 / 10</div>
+        </div>
+      </div>
+
+      <!-- 2D Adventure Scene Animation -->
+      <div id="quizAdventureScene" class="adventure-scene stage-scene-1">
+        <div class="scene-avatar-container" id="sceneAvatar">
+          <div id="sceneAvatarEmoji" class="scene-avatar-emoji">🛡️</div>
+          <div id="sceneAvatarName" class="scene-avatar-name">ผู้กล้า</div>
+        </div>
+        <div class="scene-stage-elements" id="sceneStageElement">🏰</div>
+        <div class="scene-ground"></div>
+      </div>
+
+      <!-- Question Card -->
+      <div class="question-card">
+        <div id="questionBadgeNumber" class="question-badge">คำถามข้อที่ 1</div>
+        <h2 id="questionText" class="question-text">คำใดเป็นคำควบกล้ำแท้?</h2>
+      </div>
+
+      <!-- 3 Choices Options Grid -->
+      <div id="quizOptionsContainer" class="options-grid">
+        <!-- Rendered by JS -->
+      </div>
+    </section>
+
+    <!-- SCREEN 4: GAME OVER & RESULT (ผลสรุป & เกียรติบัตร) -->
+    <section id="screen-game-over" class="game-screen">
+      <div class="result-container">
+        <!-- Result Hero Card -->
+        <div class="result-hero-card">
+          <div class="result-hero-icon">🏆</div>
+          <h2 class="result-title">การผจญภัยเสร็จสิ้นสมบูรณ์!</h2>
+          <div id="resultPlayerName" class="font-bold text-xl text-yellow-300"></div>
+          <div id="resultClassNo" class="result-player-info"></div>
+
+          <!-- Score Circle Display -->
+          <div class="result-score-circle">
+            <div id="resultScoreDisplay" class="result-score-num">100</div>
+            <div class="result-score-lbl">คะแนนเต็ม 100</div>
+          </div>
+
+          <div id="resultHonorBadge" class="result-honor-badge">มหาอัศวินเหรียญทอง 🥇</div>
+          <div id="resultCorrectCount" class="text-sm text-gray-300 mb-3">ตอบถูก 10 จาก 10 ข้อ</div>
+
+          <!-- Pass/Fail Banner -->
+          <div id="resultPassBanner" class="pass-banner">
+            <!-- Dynamic Content -->
+          </div>
+
+          <div id="resultSyncStatus" class="result-sync-status">
+            💾 บันทึกข้อมูลผลการเล่นเรียบร้อย
+          </div>
+        </div>
+
+        <!-- Digital Certificate Preview Section -->
+        <div class="cert-section">
+          <h3 class="cert-section-title">📜 เกียรติบัตรดิจิทัลของคุณ</h3>
+          <p class="cert-section-desc">เกียรติบัตรรับรองความสามารถวิชาภาษาไทย สำหรับนักเรียนคนเก่ง</p>
+
+          <div class="cert-canvas-wrapper">
+            <canvas id="certificateCanvas"></canvas>
+          </div>
+
+          <div class="cert-actions">
+            <button id="btnDownloadCert" class="btn-cert-download">
+              📥 ดาวน์โหลดเกียรติบัตร (PNG)
+            </button>
+            <button id="btnPrintCert" class="btn-cert-print">
+              🖨️ พิมพ์เกียรติบัตร
+            </button>
+          </div>
+        </div>
+
+        <!-- Replay Actions -->
+        <div class="game-replay-bar">
+          <button id="btnReplayGame" class="btn-primary-3d">
+            <span>🔄</span> เล่นใหม่อีกครั้ง (บันทึกคะแนนใหม่)
+          </button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ==================== FEEDBACK MODAL ==================== -->
+  <div id="feedbackModal" class="feedback-modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="feedback-card">
+      <div id="feedbackIcon" class="feedback-icon">🌟</div>
+      <h3 id="feedbackTitle" class="feedback-title">ยอดเยี่ยมมาก! ตอบถูกต้อง!</h3>
+      <div id="feedbackScoreBadge" class="feedback-score-badge badge-green">+10 คะแนน ⭐️</div>
+      
+      <div id="feedbackCorrectBox" class="feedback-correct-box">
+        <!-- Rendered by JS -->
+      </div>
+
+      <div id="feedbackExplanation" class="feedback-explanation">
+        คำอธิบาย
+      </div>
+
+      <div id="feedbackEncouragement" class="feedback-encouragement">
+        สู้ๆ นะคนเก่ง!
+      </div>
+
+      <button id="btnNextQuestion" class="btn-primary-3d" style="font-size: 1.15rem; padding: 12px 32px;">
+        ลุยข้อต่อไป ➡️
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== TEACHER DASHBOARD MODAL ==================== -->
+  <div id="teacherModal" class="teacher-modal-overlay hidden" role="dialog" aria-modal="true">
+    <div class="teacher-modal-content">
+      <div class="teacher-modal-header">
+        <div class="teacher-modal-title">
+          <span>👨‍🏫</span> ระบบสรุปผลสำหรับคุณครู (Teacher Dashboard)
+        </div>
+        <button id="btnCloseTeacherModal" class="btn-close-modal" title="ปิดหน้าต่าง">&times;</button>
+      </div>
+
+      <div class="teacher-modal-body">
+        <!-- Status & Direct Google Sheet Link -->
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <div id="teacherConnectionBadge" class="status-badge status-local">
+            ⚪ โหมดบันทึกในเครื่อง
+          </div>
+          <a href="https://docs.google.com/spreadsheets/d/1eSGq5AWr-OA38nGiGSvJ82IOKq87wq4kil7u7kcJogo/edit" 
+             target="_blank" 
+             rel="noopener noreferrer"
+             style="color: #2563eb; font-weight: 600; text-decoration: underline; font-size: 0.9rem;">
+            📊 เปิดดู Google Sheets ปลายทาง
+          </a>
+        </div>
+
+        <!-- Google Apps Script API Config -->
+        <div class="api-config-box">
+          <div class="config-title">
+            <span>⚙️</span> การตั้งค่า Google Apps Script Web App URL :
+          </div>
+          <div class="config-input-group">
+            <input type="text" id="inputApiUrl" class="config-input" placeholder="วาง Web App URL ที่ได้จากการ Deploy Apps Script ที่นี่">
+            <button id="btnSaveApiUrl" class="btn-save-config">บันทึก URL</button>
+          </div>
+          <div style="font-size: 0.75rem; color: #15803d; margin-top: 6px;">
+            * เมื่อ Deploy Google Apps Script ใน Google Sheets เสร็จแล้ว นำ URL มาวางเพื่อบันทึกคะแนนขึ้น Google Sheets อัตโนมัติ
+          </div>
+        </div>
+
+        <!-- Summary Statistics Cards -->
+        <div class="stats-cards-grid">
+          <div class="stat-card">
+            <div id="statTotalPlayers" class="stat-val">0</div>
+            <div class="stat-lbl">ผู้เล่นทั้งหมด (ครั้ง)</div>
+          </div>
+          <div class="stat-card">
+            <div id="statAvgScore" class="stat-val">0</div>
+            <div class="stat-lbl">คะแนนเฉลี่ย</div>
+          </div>
+          <div class="stat-card">
+            <div id="statPassRate" class="stat-val">0%</div>
+            <div class="stat-lbl">ผ่านเกณฑ์ (&ge; 70 คะแนน)</div>
+          </div>
+          <div class="stat-card">
+            <div id="statPerfectCount" class="stat-val">0</div>
+            <div class="stat-lbl">ได้คะแนนเต็ม 100</div>
+          </div>
+        </div>
+
+        <!-- Filter Controls -->
+        <div class="teacher-controls">
+          <div class="filter-group">
+            <label for="teacherFilterClass" style="font-weight: 600; font-size: 0.9rem;">ห้องเรียน:</label>
+            <select id="teacherFilterClass" class="filter-select">
+              <option value="ALL">ทุกห้องเรียน</option>
+              <option value="2/1">ป.2/1</option>
+              <option value="2/2">ป.2/2</option>
+              <option value="2/3">ป.2/3</option>
+              <option value="2/4">ป.2/4</option>
+              <option value="2/5">ป.2/5</option>
+            </select>
+
+            <input type="text" id="teacherSearchInput" class="search-input" placeholder="ค้นหาชื่อ หรือ เลขที่...">
+          </div>
+
+          <div style="display: flex; gap: 8px;">
+            <button id="btnRefreshTeacher" class="btn-header" style="background: #3b82f6; color: #fff;">🔄 รีเฟรช</button>
+            <button id="btnExportCSV" class="btn-header" style="background: #10b981; color: #fff;">📥 ส่งออก CSV</button>
+          </div>
+        </div>
+
+        <!-- Leaderboard Table -->
+        <div class="table-responsive">
+          <table class="teacher-table">
+            <thead>
+              <tr>
+                <th class="text-center" style="width: 70px;">อันดับ</th>
+                <th>ชื่อ - นามสกุล</th>
+                <th class="text-center" style="width: 80px;">ชั้น</th>
+                <th class="text-center" style="width: 80px;">เลขที่</th>
+                <th class="text-center" style="width: 100px;">คะแนน</th>
+                <th class="text-center" style="width: 110px;">ผลประเมิน</th>
+                <th class="text-center" style="width: 160px;">วันที่-เวลา</th>
+              </tr>
+            </thead>
+            <tbody id="teacherScoreTableBody">
+              <!-- Rendered by JS -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== CONFETTI CONTAINER ==================== -->
+  <div id="confettiContainer"></div>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer class="game-footer">
+    <div>เกมการศึกษาภาษาไทย “ผจญภัยพิชิตดินแดนคำควบกล้ำ” ชั้นประถมศึกษาปีที่ 2</div>
+    <div style="font-size: 0.75rem; color: #64748b; margin-top: 4px;">รองรับคอมพิวเตอร์ แท็บเล็ต และสมาร์ตโฟน • บันทึกคะแนนลง Google Sheets อัตโนมัติ</div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="config.js"></script>
+  <script src="js/questions.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/certificate.js"></script>
+  <script src="js/teacher.js"></script>
+  <script src="js/game.js"></script>
+</body>
+</html>

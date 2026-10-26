@@ -1,0 +1,161 @@
+/* ============================================================
+   อนิเมชันสำหรับเกมผจญภัยพิชิตดินแดนคำควบกล้ำ
+   Keyframe Animations for Characters & Effects
+   ============================================================ */
+
+/* การเดินของตัวละคร (Walking Animation) */
+.avatar-walking {
+  animation: avatarWalk 0.7s ease-in-out infinite alternate;
+}
+
+@keyframes avatarWalk {
+  0% {
+    transform: translateY(0) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0deg);
+  }
+  100% {
+    transform: translateY(0) rotate(2deg);
+  }
+}
+
+/* ตัวละครกระโดดดีใจเมื่อตอบถูก (Cheering Jump Animation) */
+.avatar-cheer {
+  animation: avatarCheer 0.6s ease-in-out infinite alternate;
+}
+
+@keyframes avatarCheer {
+  0% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-24px) scale(1.15) rotate(5deg);
+  }
+  100% {
+    transform: translateY(-16px) scale(1.1) rotate(-5deg);
+  }
+}
+
+/* ตัวละครให้กำลังใจเมื่อตอบผิด (Encourage Sway) */
+.avatar-sad {
+  animation: avatarEncourage 1.2s ease-in-out infinite;
+}
+
+@keyframes avatarEncourage {
+  0%, 100% {
+    transform: translateY(0) scale(1);
+  }
+  50% {
+    transform: translateY(-4px) scale(0.96) rotate(-3deg);
+  }
+}
+
+/* ลอยขึ้นลงนุ่มนวล (Float) */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+/* เด้งดึ๋งน่ารัก (Bounce) */
+@keyframes bounce {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-16px);
+  }
+  60% {
+    transform: translateY(-8px);
+  }
+}
+
+/* ขยายแสงกระพริบ (Pulse) */
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.08);
+    opacity: 0.85;
+  }
+}
+
+/* ปรากฏขึ้นนุ่มนวล (Fade In) */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ป๊อปอัปโผล่ขึ้นมา (Pop In) */
+@keyframes popIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.7);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1.04);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* สะเก็ดกระดาษเฉลิมฉลอง (Confetti Fall) */
+@keyframes confettiFall {
+  0% {
+    top: -20px;
+    transform: rotate(0deg) translateX(0);
+  }
+  50% {
+    transform: rotate(180deg) translateX(25px);
+  }
+  100% {
+    top: 105vh;
+    transform: rotate(360deg) translateX(-25px);
+  }
+}
+
+/* ประกายแสงสีทอง (Gold Shimmer) */
+.shimmer-gold {
+  position: relative;
+  overflow: hidden;
+}
+
+.shimmer-gold::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    60deg,
+    transparent 30%,
+    rgba(255, 255, 255, 0.4) 50%,
+    transparent 70%
+  );
+  transform: rotate(30deg);
+  animation: shimmerMove 3s infinite;
+}
+
+@keyframes shimmerMove {
+  0% {
+    transform: translate(-100%, -100%) rotate(30deg);
+  }
+  100% {
+    transform: translate(100%, 100%) rotate(30deg);
+  }
+}
